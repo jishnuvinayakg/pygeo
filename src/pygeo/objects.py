@@ -59,7 +59,23 @@ class Vector:
 class Ray:
     """A ray."""
 
-    ...
+    def __init__(self,origin,direction):
+        
+        self.origin = origin
+        self.direction = direction
+    
+    def __repr__(self):
+
+        return f'Ray is defined by origin {self.origin} and the direction vector {self.direction}'
+    
+    def __eq__(self,other):
+        if isinstance(other,Ray):
+
+            return np.array_equal(self.origin._point,other.origin._point) and np.array_equal(self.direction._vector,other.direction._vector)
+        else:
+
+            return NotImplemented
+
 
 
 class Sphere:
