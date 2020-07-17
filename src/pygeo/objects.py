@@ -81,7 +81,22 @@ class Ray:
 class Sphere:
     """A sphere."""
 
-    ...
+    def __init__(self,center,radius):
+
+        self.center = center
+        self.radius = radius
+    
+    def __repr__(self):
+        return f'Sphere({self.center} , {self.radius})'
+
+    def __eq__(self,other):
+
+        if isinstance(other,Sphere):
+
+            return np.array_equal(self.center._point,other.center._point) and self.radius==other.radius
+        else:
+            return NotImplemented
+
 
 
 class Triangle:
