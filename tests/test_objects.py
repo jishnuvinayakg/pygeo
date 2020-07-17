@@ -1,4 +1,5 @@
-from src.pygeo.objects import Point, Vector, Ray
+from src.pygeo.objects import Point, Vector, Ray, Sphere
+import pytest
 # Point.__eq__
 def test__point_equal__given_two_equal_points__return_true():
     assert (Point((1, 2, 3)) == Point((1, 2, 3))) is True
@@ -52,4 +53,11 @@ def test_ray_equal_given_two_ray_equal_return_true():
 
 def test_ray_equal_given_two_ray_not_equal_return_true():
     assert ((Ray(Point((1,0,0)),Vector((1,2,3))))== (Ray(Point((1,0,0)),Vector((1,2,1)))))is False
+
+#Sphere.__eq__
+def test_sphere_equal_given_two_sphere_equal_return_true():
+    assert (Sphere(Point((1,2,0)),5) == Sphere(Point((1,2,0)),5) )is True
+
+def test_sphere_equal_given_two_sphere_not_equal_return_true():
+    assert (Sphere(Point((1,2,3)),8) == Sphere(Point((1,2,0)),5) )is False
 
