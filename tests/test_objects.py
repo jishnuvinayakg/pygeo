@@ -1,4 +1,4 @@
-from src.pygeo.objects import Point, Vector, Ray, Sphere
+from src.pygeo.objects import Point, Vector, Ray, Sphere,Triangle
 import pytest
 # Point.__eq__
 def test__point_equal__given_two_equal_points__return_true():
@@ -49,15 +49,35 @@ def test__vector_subtraction__given_two_vectors__return_correct_vector():
 
 #Ray.__eq__
 def test_ray_equal_given_two_ray_equal_return_true():
+    '''Test case : given two ray are equal'''
     assert ((Ray(Point((1,0,0)),Vector((1,2,1))))== (Ray(Point((1,0,0)),Vector((1,2,1)))))is True
 
-def test_ray_equal_given_two_ray_not_equal_return_true():
+def test_ray_equal_given_two_ray_not_equal_return_false():
+    '''Test case : given two ray are not equal'''
     assert ((Ray(Point((1,0,0)),Vector((1,2,3))))== (Ray(Point((1,0,0)),Vector((1,2,1)))))is False
 
 #Sphere.__eq__
 def test_sphere_equal_given_two_sphere_equal_return_true():
+    '''Test case : given two spheres are equal'''
     assert (Sphere(Point((1,2,0)),5) == Sphere(Point((1,2,0)),5) )is True
 
-def test_sphere_equal_given_two_sphere_not_equal_return_true():
+def test_sphere_equal_given_two_sphere_not_equal_return_false():
+    '''Test case : given two spheres are not equal'''
     assert (Sphere(Point((1,2,3)),8) == Sphere(Point((1,2,0)),5) )is False
+
+#Traingle .__init__
+def test_triangle_instance_creation_return_true():
+    '''Test case : checking if initialisation of traingle is done correctly. Returns true if all 
+       3 vertices are assigned correctly'''
+    a = Point((0,0,0))
+    b = Point((0,5,0))
+    c = Point((5,0,0))
+
+    traingle_1 = Triangle(a,b,c)
+    assert_flag = False
+    if traingle_1.A == a and traingle_1.B == b and traingle_1.C == c :
+        assert_flag = True
+    assert(assert_flag) is True
+
+
 

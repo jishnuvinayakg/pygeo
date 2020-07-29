@@ -102,4 +102,13 @@ class Sphere:
 class Triangle:
     """A triangle."""
 
-    ...
+    def __init__(self,a,b,c):
+
+        self.A = a
+        self.B = b
+        self.C = c
+    
+    def __repr__(self):
+        return f'Traingle : vertices {self.A} ,{self.B} ,{self.C}'
+
+    

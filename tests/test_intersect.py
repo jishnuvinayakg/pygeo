@@ -7,10 +7,9 @@ from src.pygeo.objects import Ray, Sphere, Triangle,Point,Vector
 import numpy as np 
 
 
-# intersect
+# Test cases for intersect
 
-
-# test _intersect_ray_with_sphere
+# 1.test _intersect_ray_with_sphere
 def test_ray_sphere_intersection_2_point_return_true():
     '''Test case : intersection of ray @ 2 points with a sphere. 
        Sphere : center [0,0,0], radius = 5
@@ -56,4 +55,36 @@ def test_ray_sphere_no_intersection_return_true():
     assert(num_intersection_point==0)is True
 
 
-# _intersect_ray_with_triangle
+# 2.  _intersect_ray_with_triangle
+def test_traingle_ray_intersection_return_true():
+    '''Test case : ray and traingle having an intersection point
+        Traingle : vertices (2,0,0) , (5,0,0) , (2,5,0)
+        Ray : Begin(3,1,2) , direction (0,0,-1)
+        Expected result : True'''
+    a = Point((2,0,0))
+    b = Point((5,0,0))
+    c = Point((2,5,0))
+
+    point_b = Point((3,1,2))
+    vector_vb = Vector((0,0,-1))
+    ray_b = Ray(point_b,vector_vb)
+    traingle_a = Triangle(a,b,c)
+    assert_flag,_ = _intersect_ray_with_triangle(ray_b,traingle_a)
+    assert (assert_flag) is True
+
+def test_traingle_ray_no_intersection_return_false():
+
+    '''Test case : ray and traingle having no intersection point
+        Traingle : vertices (2,0,0) , (5,0,0) , (2,5,0)
+        Ray : Begin(1,4,1) , direction (0,0,-1)
+        Expected result : Flase'''
+    a = Point((2,0,0))
+    b = Point((5,0,0))
+    c = Point((2,5,0))
+
+    point_b = Point((1,4,1))
+    vector_vb = Vector((0,0,-1))
+    ray_b = Ray(point_b,vector_vb)
+    traingle_a = Triangle(a,b,c)
+    assert_flag,_ = _intersect_ray_with_triangle(ray_b,traingle_a)
+    assert (assert_flag) is False
