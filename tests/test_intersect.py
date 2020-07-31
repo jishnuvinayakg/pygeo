@@ -77,7 +77,7 @@ def test_traingle_ray_no_intersection_return_false():
     '''Test case : ray and traingle having no intersection point
         Traingle : vertices (2,0,0) , (5,0,0) , (2,5,0)
         Ray : Begin(1,4,1) , direction (0,0,-1)
-        Expected result : Flase'''
+        Expected result : False'''
     a = Point((2,0,0))
     b = Point((5,0,0))
     c = Point((2,5,0))
@@ -88,3 +88,38 @@ def test_traingle_ray_no_intersection_return_false():
     traingle_a = Triangle(a,b,c)
     assert_flag,_ = _intersect_ray_with_triangle(ray_b,traingle_a)
     assert (assert_flag) is False
+
+#3 : Test cases for intersect function
+#ray sphere intersection 
+def test_ray_sphere_intersect_return_true():
+    '''Test case : check if intersect methods call the correct fuction when a ray and sphere is passed as arguments.
+       Sphere : center [0,0,0], radius = 5
+       Ray : Begin [-6,3,0], direction[1,0,0]
+       Expected intersection points : [-4,3,0] & [4,3,0] implies coreect methods was invoked'''
+    point_1 =[-4,3,0]
+    point_2 =[4,3,0]
+    assert_flag = False
+    ray = Ray(Point((-6,3,0)),Vector((1,0,0)))
+    sphere = Sphere(Point((0,0,0)),5)
+    num_intersection_point,points,_ =intersect(sphere,ray)
+    if ((points[0] == point_1 or points[0] == point_2) and 
+    (points[1] == point_1 or points[1] == point_2)):
+        assert_flag = True
+    assert(num_intersection_point==2 and assert_flag)is True
+
+def test_ray_triangle_intersect_true():
+
+    '''Test case : check if intersect methods call the correct fuction when a ray and triangle is passed as arguments.
+        Traingle : vertices (2,0,0) , (5,0,0) , (2,5,0)
+        Ray : Begin(3,1,2) , direction (0,0,-1)
+        Expected result : True . implies correct method was invoked'''
+    a = Point((2,0,0))
+    b = Point((5,0,0))
+    c = Point((2,5,0))
+
+    point_b = Point((3,1,2))
+    vector_vb = Vector((0,0,-1))
+    ray_b = Ray(point_b,vector_vb)
+    traingle_a = Triangle(a,b,c)
+    _,_,assert_flag = intersect(ray_b,traingle_a)
+    assert (assert_flag) is True

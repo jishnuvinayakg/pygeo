@@ -4,7 +4,24 @@ import math as m
 
 
 def intersect(first_object, second_object):
-    ...
+    
+    points =[]
+    numb_points =0
+    flag = False
+
+    if isinstance(first_object,Sphere) or isinstance(second_object,Sphere):
+        if isinstance(first_object,Sphere):
+            numb_points,points = _intersect_ray_with_sphere(second_object,first_object)
+        else:
+            numb_points,points=_intersect_ray_with_sphere(first_object,second_object)
+    
+    elif isinstance(first_object,Triangle) or isinstance(second_object,Triangle):
+        if isinstance(first_object,Sphere):
+            flag,points = _intersect_ray_with_triangle(second_object,first_object)
+        else:
+            flag,points=_intersect_ray_with_triangle(first_object,second_object)
+    
+    return numb_points,points,flag
 
 
 def _intersect_ray_with_sphere(ray, sphere):
